@@ -33,7 +33,7 @@ public class ArticleForm {
 
     public Article buildArticle(){
         Article article = new Article();
-        article.setAutor(this.getTitulo());
+        article.setAutor(this.getAutor());
         article.setData(this.getData());
         article.setTitulo(this.getTitulo());
         article.setVeiculo(this.getVeiculo());
@@ -44,72 +44,42 @@ public class ArticleForm {
         return KeywordUtils.splitKeywords(keywords);
     }
     
-    /**
-     * @return the titulo
-     */
     public String getTitulo() {
         return titulo;
     }
-
-    /**
-     * @param titulo the titulo to set
-     */
+    
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-
-    /**
-     * @return the autor
-     */
+    
     public String getAutor() {
         return autor;
     }
 
-    /**
-     * @param autor the autor to set
-     */
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    /**
-     * @return the veiculo
-     */
     public String getVeiculo() {
         return veiculo;
     }
 
-    /**
-     * @param veiculo the veiculo to set
-     */
     public void setVeiculo(String veiculo) {
         this.veiculo = veiculo;
     }
 
-    /**
-     * @return the keywords
-     */
     public String getKeywords() {
         return keywords;
     }
 
-    /**
-     * @param keywords the keywords to set
-     */
     public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
 
-    /**
-     * @return the data
-     */
     public Date getData() {
         return data;
     }
 
-    /**
-     * @param data the data to set
-     */
     public void setData(Date data) {
         this.data = data;
     }

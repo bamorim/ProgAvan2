@@ -43,6 +43,7 @@ public class ArticleDAO {
     public Article findById(Long id){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select distinct a from Article a join fetch a.keywords where a.id=:id");
+        query.setParameter("id", id);
         return (Article)query.uniqueResult();
     }
     
