@@ -3,6 +3,7 @@ CREATE TABLE articles (
   titulo varchar(100),
   autor varchar(100),
   veiculo varchar(100),
+  filename varchar(100),
   data date
 );
 

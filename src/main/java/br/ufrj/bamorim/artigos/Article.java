@@ -23,6 +23,7 @@ public class Article {
     private String titulo;
     private String autor;
     private String veiculo;
+    private String filename;
     private Date data;
     
     
@@ -80,5 +81,19 @@ public class Article {
     
     public void setKeywords(Set<Keyword> keywords) {
         this.keywords = keywords;
+    }
+
+    /**
+     * @return the filename
+     */
+    public String getFilename() {
+        return filename;
+    }
+
+    /**
+     * @param filename the filename to set
+     */
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 }

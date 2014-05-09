@@ -5,7 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <t:default>
     <jsp:body>
-        <form:form action="${pageContext.request.contextPath}/" cssClass="form-horizontal" commandName="article" method="post">
+        <form:form action="${pageContext.request.contextPath}/" enctype="multipart/form-data" cssClass="form-horizontal" commandName="article" method="post">
             <jsp:include page="articleForm.jsp"/>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10"><input type="submit" class="btn btn-primary" value="Salvar"/></div>

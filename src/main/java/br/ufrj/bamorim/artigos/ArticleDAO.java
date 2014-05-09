@@ -1,8 +1,8 @@
 package br.ufrj.bamorim.artigos;
 
-import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +40,15 @@ public class ArticleDAO {
     @Transactional
     public void destroy(Long id){
         Session session = sessionFactory.getCurrentSession();
+        
+        SQLQuery sqlQuery = session.createSQLQuery("delete from article_keywords where article_id=:id");
+        sqlQuery.setParameter("id", id);
+        
         Query query = session.createQuery("delete from Article where id=:id");
         query.setParameter("id", id);
+        
+        sqlQuery.executeUpdate();
+        query.executeUpdate();
     }
     
     @Transactional

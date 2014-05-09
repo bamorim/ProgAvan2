@@ -33,3 +33,10 @@
         <form:input path="data" type="date" cssClass="form-control"/>
     </div>
 </div>
+
+<div class="form-group">
+    <label class="col-sm-2 control-label">Artigo</label>
+    <div class="col-sm-10">
+        <input name="article_file" type="file" cssClass="form-control"/>
+    </div>
+</div>
