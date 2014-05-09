@@ -8,13 +8,16 @@ package br.ufrj.bamorim.artigos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+@SequenceGenerator(name="keywords_seq" ,sequenceName="keywords_id_seq", allocationSize=1 ,initialValue=1) 
 @Table(name = "keywords")
-public class Keyword {
-    @Id @GeneratedValue private long id;
+public class Keyword  {
+    @Id @GeneratedValue(generator="keywords_seq", strategy=GenerationType.SEQUENCE) private long id;
     private String keyword;
 
     /**

@@ -7,16 +7,19 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
+@SequenceGenerator(name="articles_seq" ,sequenceName="articles_id_seq", allocationSize=1 ,initialValue=1)   
 @Table(name = "articles")
 public class Article {
-    @Id @GeneratedValue private long id;
+    @Id @GeneratedValue(generator="articles_seq", strategy=GenerationType.SEQUENCE) private long id;
     private String titulo;
     private String autor;
     private String veiculo;
@@ -75,7 +78,7 @@ public class Article {
         return this.keywords;
     }
     
-    public void setCategories(Set<Keyword> keywords) {
+    public void setKeywords(Set<Keyword> keywords) {
         this.keywords = keywords;
     }
 }
