@@ -41,13 +41,7 @@ public class ArticleForm {
     }
     
     public List<String> buildKeywords(){
-        List<String> kws;
-        if(keywords.isEmpty() || keywords.matches("^[,\\s]*$")){
-          kws = new LinkedList<String>();
-        } else {
-            kws = Arrays.asList(keywords.split("[,\\s]+"));
-        }
-        return kws;
+        return KeywordUtils.splitKeywords(keywords);
     }
     
     /**

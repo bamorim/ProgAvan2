@@ -1,10 +1,14 @@
 package br.ufrj.bamorim.artigos;
 
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,17 +27,22 @@ public class ArticleDAO {
     }
     
     @Transactional
-    public List<Article> findAllWithKeywords(){
+    public List<Article> findAllWithCriteria(List<Criterion> criterions){
         Session session = sessionFactory.getCurrentSession();
-        List articles = session.createQuery("select distinct a from Article a left JOIN FETCH a.keywords").list();
-        return articles;
+        Criteria criteria = session.createCriteria(Article.class);
+        criteria.setFetchMode("keywords", FetchMode.SELECT);
+        criteria.createAlias("keywords", "kw", JoinType.LEFT_OUTER_JOIN);
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        for(Criterion cr : criterions) {
+            criteria.add(cr);
+        }
+        return criteria.list();
     }
     
     @Transactional
     public Article findById(Long id){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select distinct a from Article a join fetch a.keywords where a.id=:id");
-        query.setParameter("id", id);
         return (Article)query.uniqueResult();
     }
     
